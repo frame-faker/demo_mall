@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    include: dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/demo_mall?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: flame
+  redis:
+    ###Redis数据库索引（默认为0）
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+
+logging:
+  level:
+    root: debug

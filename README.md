@@ -5,14 +5,14 @@ java实现小程序,app商城服务端(附带后台)
 其实，当用户量没有达到一定的级别时，这些都是费力不讨好的事情(ps:架构应该根据项目目前的目标用户规划，人力，团队实力来定制的)。
 小型项目应该关注于如何使用一些插件来提高开发效率，以及如何更好的利用maven的分包来提高代码复用率。
 
-项目使用技术
-  SpringBoot2.1.1
-  Mybatis+通用Mapper+Pagehelper+Mybatis-Generator(mybatis和它的三件套)
-  Druid(数据库连接池)
-  Guava(谷歌开发工具包)
-  Common-*(apache一系列工具包)
-  okHttp(http请求)
+项目使用技术<br>
+&emsp;  SpringBoot2.1.1 <br>
+&emsp;  Mybatis+通用Mapper+Pagehelper+Mybatis-Generator(mybatis和它的三件套) <br>
+&emsp;  Druid(数据库连接池)<br>
+&emsp;  Guava(谷歌开发工具包)<br>
+&emsp;  Common-*(apache一系列工具包) <br>
+&emsp;  okHttp(http请求) <br>
 
-项目模块说明:
-  未完待续...
+项目模块说明: <br>
+&emsp;&emsp;  未完待续...
 

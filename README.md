@@ -12,7 +12,7 @@ java实现小程序,app商城服务端(附带后台)
 &emsp;  Guava(谷歌开发工具包)<br>
 &emsp;  Common-*(apache一系列工具包) <br>
 &emsp;  okHttp(http请求) <br>
-&emsp;  Lombok(http请求) <br>
+&emsp;  Lombok(简化代码) <br>
 
 项目模块说明: <br>
 &emsp;&emsp;  未完待续...

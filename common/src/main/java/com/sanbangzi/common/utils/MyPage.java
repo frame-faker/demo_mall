@@ -13,15 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 public class MyPage<T> {
 
-    // 页数
-    private Integer pageNum;
-
-    // 每页大小
-    private Integer pageSize;
-
-    // 总页数
-    private Integer pages;
-
     // 总记录数
     private Long total;
 
@@ -29,6 +20,6 @@ public class MyPage<T> {
     private List<T> data;
 
     public static MyPage newInstance(PageInfo pageInfo) {
-        return new MyPage(pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getPages(), pageInfo.getTotal(), pageInfo.getList());
+        return new MyPage(pageInfo.getTotal(), pageInfo.getList());
     }
 }

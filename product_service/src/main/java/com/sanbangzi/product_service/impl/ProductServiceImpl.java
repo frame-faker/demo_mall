@@ -48,7 +48,7 @@ public class ProductServiceImpl implements ProductService {
                 .where(WeekendSqls.<ProductEntity>custom().andEqualTo(ProductEntity::getCompanyId, productReqDTO.getCompanyId()))
                 .orderByDesc("updateTime").build();
         PageHelper.startPage(productReqDTO.getPageNum(), productReqDTO.getPageSize());
-        return MyPage.newInstance(PageInfo.of(BeanUtil.copyList(productDao.selectByExample(example), ProductResDTO.class)));
+        return BeanUtil.copyPage(MyPage.newInstance(PageInfo.of(productDao.selectByExample(example))), ProductResDTO.class);
     }
 
     @Override
@@ -57,14 +57,13 @@ public class ProductServiceImpl implements ProductService {
                 .where(WeekendSqls.<ProductEntity>custom().andLike(ProductEntity::getTitle, "%" + productReqDTO.getTitle() + "%"))
                 .orderByDesc("updateTime").build();
         PageHelper.startPage(productReqDTO.getPageNum(), productReqDTO.getPageSize());
-        return MyPage.newInstance(PageInfo.of(BeanUtil.copyList(productDao.selectByExample(example), ProductResDTO.class)));
+        return BeanUtil.copyPage(MyPage.newInstance(PageInfo.of(productDao.selectByExample(example))), ProductResDTO.class);
     }
 
     @Override
     public MyPage<ProductResDTO> pageByType(ProductReqDTO productReqDTO) throws ProductException {
         PageHelper.startPage(productReqDTO.getPageNum(), productReqDTO.getPageSize());
-        List<ProductResDTO> res = productDao.pageByType(productReqDTO.getTypeId());
-        return null == res ? null : MyPage.newInstance(PageInfo.of(res));
+        return MyPage.newInstance(PageInfo.of(productDao.pageByType(productReqDTO.getTypeId())));
     }
 
     @Override

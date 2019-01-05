@@ -57,4 +57,23 @@ public class BeanUtil extends BeanUtils {
         return dest;
     }
 
+    /**
+     * 拷贝分页里面的数据
+     * @param src 数据源
+     * @param to 目标
+     * @return 数据源为空返回空
+     */
+    public static MyPage copyPage(MyPage src, Class to) {
+        if (null == src) {
+            return null;
+        }
+        List data = src.getData();
+        if (null == data) {
+            return src;
+        }
+        List<Object> newData = copyList(data, to);
+        src.setData(newData);
+        return src;
+    }
+
 }

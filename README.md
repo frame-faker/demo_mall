@@ -5,6 +5,10 @@ java实现小程序,app商城服务端(附带后台)
 其实，当用户量没有达到一定的级别时，这些都是费力不讨好的事情(ps:架构应该根据项目目前的目标用户规划，人力，团队实力来定制的)。
 小型项目应该关注于如何使用一些插件来提高开发效率，以及如何更好的利用maven的分包来提高代码复用率。
 
+
+线上展示
+![Alt text](https://github.com/frame-faker/demo_mall/blob/master/images/WechatIMG880.jpeg)
+
 项目使用技术: <br>
 &emsp;  SpringBoot2.1.1 <br>
 &emsp;  Mybatis+通用Mapper+Pagehelper+Mybatis-Generator(mybatis和它的三件套) <br>

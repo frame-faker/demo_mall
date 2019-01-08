@@ -3,6 +3,7 @@ package com.sanbangzi.xcx_web.api;
 import com.sanbangzi.common.utils.WebResponse;
 import com.sanbangzi.company_service_api.api.CompanyBannerService;
 import com.sanbangzi.company_service_api.api.CompanyProductTypeService;
+import com.sanbangzi.company_service_api.api.CompanyService;
 import com.sanbangzi.domain.dto.res.CompanyBannerResDTO;
 import com.sanbangzi.xcx_web.annotation.IgnoreLogin;
 import com.sanbangzi.xcx_web.annotation.RequestParamsNotEmpty;
@@ -21,6 +22,23 @@ public class CompanyController extends BaseController {
     @Autowired
     private CompanyProductTypeService companyProductTypeService;
 
+    @Autowired
+    private CompanyService companyService;
+
+    @IgnoreLogin
+    @GetMapping("/config")
+    @RequestParamsNotEmpty(names = {"companyId"})
+    public WebResponse config(Long companyId) throws Exception {
+        return xcxSuccess(companyService.config(companyId));
+    }
+
+    @IgnoreLogin
+    @GetMapping("/getById")
+    @RequestParamsNotEmpty(names = {"companyId"})
+    public WebResponse getById(Long companyId) throws Exception {
+        return xcxSuccess(companyService.getById(companyId));
+    }
+
     @IgnoreLogin
     @GetMapping("/banner")
     @RequestParamsNotEmpty(names = {"companyId"})
@@ -35,5 +53,4 @@ public class CompanyController extends BaseController {
     public WebResponse productType(Long companyId) throws Exception {
        return xcxSuccess(companyProductTypeService.listByCompanyId(companyId));
     }
-
 }

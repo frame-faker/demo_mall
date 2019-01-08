@@ -15,7 +15,7 @@ public class XcxManageImpl implements XcxManage {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(XcxManageImpl.class);
 
-    private static final String APP_ID = "<your app id>";
+    public static final String APP_ID = "<your appid>";
 
     private static final String APP_SECRET = "<your app secret>";
 

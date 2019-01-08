@@ -8,7 +8,8 @@ import com.sanbangzi.domain.dto.res.XcxLoginResDTO;
 import com.sanbangzi.thriparty.ali.oss.OssConst;
 import com.sanbangzi.thriparty.ali.oss.OssUtil;
 import com.sanbangzi.thriparty.wx.xcx.XcxManage;
-import com.sanbangzi.thriparty.wx.xcx.XcxUtil;
+import com.sanbangzi.thriparty.wx.xcx.impl.XcxManageImpl;
+import com.sanbangzi.thriparty.wx.xcx.util.XcxUtil;
 import com.sanbangzi.user_service_api.api.UserService;
 import com.sanbangzi.user_service_api.api.XcxLoginService;
 import com.sanbangzi.user_service_api.consts.UserCacheKeyConst;
@@ -19,6 +20,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class XcxLoginServiceImpl implements XcxLoginService {
@@ -41,11 +43,11 @@ public class XcxLoginServiceImpl implements XcxLoginService {
         }
         UserResDTO userResDTO = userService.getByOpenId(openId);
         if (null == userResDTO) {
-            throw UserException.throwErrorCode(UserErrorCode.LOGIN_ERROR);
+            throw UserException.throwErrorCode(UserErrorCode.NO_REGISTER);
         }
         Long userId = userResDTO.getId();
         String accessToken = RandomUtil.uuid();
-        stringRedisTemplate.opsForValue().set(UserCacheKeyConst.XCX_ACCESS_TOKEN + accessToken, String.valueOf(userId), UserCacheKeyConst.XCX_ACCESS_TOKEN_EXPIRE_TIME);
+        stringRedisTemplate.opsForValue().set(UserCacheKeyConst.XCX_ACCESS_TOKEN + accessToken, String.valueOf(userId), UserCacheKeyConst.XCX_ACCESS_TOKEN_EXPIRE_TIME, TimeUnit.SECONDS);
 
         XcxLoginResDTO xcxLoginResDTO = new XcxLoginResDTO();
         xcxLoginResDTO.setUserId(userId);
@@ -66,7 +68,7 @@ public class XcxLoginServiceImpl implements XcxLoginService {
         if (null != userService.getByOpenId(openId)) {
             throw UserException.throwErrorCode(UserErrorCode.REGISTER_ERROR);
         }
-        Map<String, Object> decodeUserInfo = XcxUtil.decodeUserInfo(userInfo, sessionKey);
+        Map<String, Object> decodeUserInfo = XcxUtil.decrypt(XcxManageImpl.APP_ID, userInfo, sessionKey);
         if (null == decodeUserInfo) {
             throw UserException.throwErrorCode(UserErrorCode.REGISTER_ERROR);
         }
@@ -85,7 +87,7 @@ public class XcxLoginServiceImpl implements XcxLoginService {
 
         // 登录
         String accessToken = RandomUtil.uuid();
-        stringRedisTemplate.opsForValue().set(UserCacheKeyConst.XCX_ACCESS_TOKEN + accessToken, String.valueOf(userId), UserCacheKeyConst.XCX_ACCESS_TOKEN_EXPIRE_TIME);
+        stringRedisTemplate.opsForValue().set(UserCacheKeyConst.XCX_ACCESS_TOKEN + accessToken, String.valueOf(userId), UserCacheKeyConst.XCX_ACCESS_TOKEN_EXPIRE_TIME, TimeUnit.SECONDS);
 
         XcxLoginResDTO xcxLoginResDTO = new XcxLoginResDTO();
         xcxLoginResDTO.setUserId(userId);

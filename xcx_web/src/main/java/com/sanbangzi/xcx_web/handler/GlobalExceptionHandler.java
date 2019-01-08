@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
         XcxErrorCode xcxErrorCode = e.getXcxErrorCode();
         Integer code = xcxErrorCode.getCode();
         String msg = xcxErrorCode.getMsg();
-        LOGGER.error("模板模块, 错误信息 => code:{}, msg:{}",code, msg);
+        LOGGER.error("小程序模块, 错误信息 => code:{}, msg:{}",code, msg);
         return new WebResponse(code, msg, null);
     }
 
@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
         UserErrorCode userErrorCode = e.getUserErrorCode();
         Integer code = userErrorCode.getCode();
         String msg = userErrorCode.getMsg();
-        LOGGER.error("模板模块, 错误信息 => code:{}, msg:{}",code, msg);
+        LOGGER.error("用户模块, 错误信息 => code:{}, msg:{}",code, msg);
         return new WebResponse(code, msg, null);
     }
 
@@ -43,7 +43,7 @@ public class GlobalExceptionHandler {
         ProductErrorCode productErrorCode = e.getProductErrorCode();
         Integer code = productErrorCode.getCode();
         String msg = productErrorCode.getMsg();
-        LOGGER.error("模板模块, 错误信息 => code:{}, msg:{}",code, msg);
+        LOGGER.error("产品模块, 错误信息 => code:{}, msg:{}",code, msg);
         return new WebResponse(code, msg, null);
     }
 
@@ -52,7 +52,7 @@ public class GlobalExceptionHandler {
         CompanyErrorCode companyErrorCode = e.getCompanyErrorCode();
         Integer code = companyErrorCode.getCode();
         String msg = companyErrorCode.getMsg();
-        LOGGER.error("模板模块, 错误信息 => code:{}, msg:{}",code, msg);
+        LOGGER.error("公司模块, 错误信息 => code:{}, msg:{}",code, msg);
         return new WebResponse(code, msg, null);
     }
 

@@ -7,27 +7,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/** 公司banner表 */
+/** 公司配置表 */
 @Data
-@Table(name = "company_banner")
-public class CompanyBannerEntity {
+@Table(name = "company_config")
+public class CompanyConfigEntity {
 
     /** 主键 */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /** 图片 */
-    private String picture;
+    /** 键 */
+    private String name;
 
-    /** 链接 */
-    private String link;
+    /** 值 */
+    private String value;
 
-    /** 类型(1:无链接,2:产品) */
-    private Byte type;
-
-    /** 排序 */
-    private Byte sort;
+    /** 描述 */
+    private String description;
 
     /** 公司id(关联company.id) */
     private Long companyId;

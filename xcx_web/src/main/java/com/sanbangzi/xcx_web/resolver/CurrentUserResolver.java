@@ -10,7 +10,7 @@ import com.sanbangzi.xcx_web.exception.XcxErrorCode;
 import com.sanbangzi.xcx_web.exception.XcxException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -24,7 +24,7 @@ public class CurrentUserResolver implements HandlerMethodArgumentResolver {
     private UserService userService;
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private StringRedisTemplate stringRedisTemplate;
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
@@ -39,8 +39,11 @@ public class CurrentUserResolver implements HandlerMethodArgumentResolver {
     public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest webRequest, WebDataBinderFactory webDataBinderFactory) throws Exception {
         // 取出的登录用户token
         String token = webRequest.getHeader(XcxConst.ACCESS_TOKEN_KEY);
+        if (StringUtil.isBlank(token)) {
+            throw XcxException.throwErrorCode(XcxErrorCode.ACCESS_TOKEN_ERROR);
+        }
         String key = UserCacheKeyConst.XCX_ACCESS_TOKEN + token;
-        String userIdStr = redisTemplate.opsForValue().get(key).toString();
+        String userIdStr = stringRedisTemplate.opsForValue().get(key);
         if (StringUtil.isBlank(userIdStr)) {
             throw XcxException.throwErrorCode(XcxErrorCode.ACCESS_TOKEN_ERROR);
         }

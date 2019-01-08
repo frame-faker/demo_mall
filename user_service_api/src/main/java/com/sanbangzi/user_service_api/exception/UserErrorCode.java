@@ -7,7 +7,8 @@ public enum UserErrorCode {
 
     BUSINESS_ERROR(20001, ""),
     LOGIN_ERROR(20002, "登录失败"),
-    REGISTER_ERROR(20003, "注册失败");
+    NO_REGISTER(20003, "用户未注册"),
+    REGISTER_ERROR(20004, "注册失败");
 
     @Getter
     private Integer code;

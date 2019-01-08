@@ -1,7 +1,6 @@
 package com.sanbangzi.xcx_web.interceptor;
 
 import com.alibaba.fastjson.JSON;
-import com.google.common.base.Splitter;
 import com.sanbangzi.common.utils.StringUtil;
 import com.sanbangzi.xcx_web.annotation.RequestParamsNotEmpty;
 import com.sanbangzi.xcx_web.exception.XcxErrorCode;
@@ -62,7 +61,7 @@ public class RequestParamsNotEmptyMethodArgumentInterceptor extends HandlerInter
         String value = null;
         for (String paramName : params) {
             value = request.getParameter(paramName);
-            if (StringUtil.isAnyEmpty(paramName, value)) {
+            if (StringUtil.isAnyEmpty(paramName, value) || "undefined".equals(value)) {
                 throw XcxException.throwParamNull(paramName);
             }
         }
@@ -80,7 +79,7 @@ public class RequestParamsNotEmptyMethodArgumentInterceptor extends HandlerInter
         String value = null;
         for (String paramName : checkParams) {
             value = String.valueOf(requestParamMap.get(paramName));
-            if (StringUtil.isAnyEmpty(paramName, value)) {
+            if (StringUtil.isAnyEmpty(paramName, value) || "undefined".equals(value)) {
                 throw XcxException.throwParamNull(paramName);
             }
         }

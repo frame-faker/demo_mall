@@ -42,7 +42,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         }
         String cacheKey = UserCacheKeyConst.XCX_ACCESS_TOKEN + remoteAccessToken;
         String localAccessToken = stringRedisTemplate.opsForValue().get(cacheKey);
-        if (!StringUtil.equals(remoteAccessToken, localAccessToken)) {
+        if (StringUtil.isBlank(localAccessToken)) {
             throw XcxException.throwErrorCode(XcxErrorCode.ACCESS_TOKEN_ERROR);
         }
         return true;

@@ -24,6 +24,8 @@
         <module>user_service_api</module>
         <module>product_service</module>
         <module>product_service_api</module>
+        <module>company_service</module>
+        <module>company_service_api</module>
         <module>crm_web</module>
         <module>xcx_web</module>
         <module>code_generator</module>
@@ -44,7 +46,7 @@
         <mapper.version>4.0.3</mapper.version>
         <guava.version>25.0-jre</guava.version>
         <common.lang.version>3.4</common.lang.version>
-        <commons-codec.version>1.11</commons-codec.version>
+        <commons-codec.version>1.4</commons-codec.version>
         <commons-io.version>2.6</commons-io.version>
         <lombok.version>1.18.4</lombok.version>
         <jedis.version>2.9.0</jedis.version>
@@ -52,6 +54,7 @@
         <okhttp.version>3.10.0</okhttp.version>
         <okio.version>1.14.1</okio.version>
         <aliyun-sdk-oss.version>2.8.3</aliyun-sdk-oss.version>
+        <bouncycastle.version>1.46</bouncycastle.version>
     </properties>
 
     <dependencyManagement>
@@ -206,6 +209,13 @@
                 <groupId>com.aliyun.oss</groupId>
                 <artifactId>aliyun-sdk-oss</artifactId>
                 <version>${aliyun-sdk-oss.version}</version>
+            </dependency>
+
+            <!-- bouncycastle -->
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcprov-jdk16</artifactId>
+                <version>${bouncycastle.version}</version>
             </dependency>
 
             <!--管理模块版本号-->

@@ -6,6 +6,7 @@ java实现小程序,app商城服务端(附带后台)
 小型项目应该关注于如何使用一些插件来提高开发效率，以及如何更好的利用maven的分包来提高代码复用率。
 <br><br>
 线上展示 <br>
+&emsp;&emsp; 线上的服务器过期了。。<br>
 <img src="https://github.com/frame-faker/demo_mall/blob/master/images/WechatIMG880.jpeg" width="300" alt="微信小程序码">
 <br><br>
 项目使用技术: <br>
@@ -18,6 +19,5 @@ java实现小程序,app商城服务端(附带后台)
 &emsp;  Lombok(简化代码) <br>
 
 项目模块说明: <br>
-&emsp;&emsp; 线上的服务器过期了。。<br>
 &emsp;&emsp;  未完待续...
 
